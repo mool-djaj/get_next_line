@@ -6,11 +6,22 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 22:15:20 by akaarich          #+#    #+#             */
-/*   Updated: 2025/11/16 02:36:34 by akaarich         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:29:37 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char *join_and_free(char *s1, char *s2)
+{
+	if(!s1)
+		return NULL;
+    char *tmp = ft_strjoin(s1, s2);
+	free(s1);
+	if(!tmp)
+		return NULL;
+    return tmp;
+}
 
 char *read_store(int fd, char *sta)
 {
@@ -31,7 +42,7 @@ char *read_store(int fd, char *sta)
             return NULL;
         }
         buff[byt_read] = '\0';
-        sta = ft_strjoin(sta, buff);
+        sta = join_and_free(sta, buff);
         if (!sta)
             return NULL;
     }
@@ -41,6 +52,7 @@ char *read_store(int fd, char *sta)
 char *extract_line(char *stash)
 {
     size_t i;
+	char *tmp;
 
 	i = 0;
     if (!stash || stash[0] == '\0')
@@ -49,12 +61,15 @@ char *extract_line(char *stash)
         i++;
     if (stash[i] == '\n')
         i++;
-    return ft_substr(stash, 0, i);
+	tmp = ft_substr(stash, 0, i);
+	if(!tmp)
+		return NULL;
+    return tmp;
 }
 
 char *sav_rest(char *sta)
 {
-    size_t i;
+    int i;
     char *tmp;
 
 	i = 0;
@@ -91,20 +106,21 @@ char *get_next_line(int fd)
     sta = sav_rest(sta);
     return line;
 }
-int main(void)
-{
-    int fd = open("txt.txt", O_RDONLY);
-    char *buff;
 
-    if (fd < 0)
-        return (1);
+// int main(void)
+// {
+//     int fd = open("txt.txt", O_RDONLY);
+//     char *buff;
 
-    while ((buff = get_next_line(fd)) != NULL)
-    {
-        printf("%s", buff);
-        free(buff);
-    }
+//     if (fd < 0)
+//         return (1);
 
-    close(fd);
-    return (0);
-}
+//     while ((buff = get_next_line(fd)) != NULL)
+//     {
+//         printf("%s", buff);
+//         free(buff);
+//     }
+
+//     close(fd);
+//     return (0);
+// }

@@ -6,35 +6,36 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 22:15:29 by akaarich          #+#    #+#             */
-/*   Updated: 2025/11/16 02:20:50 by akaarich         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:29:29 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	unsigned int		i;
 	unsigned int	leng;
 	char			*d;
 
+	if (!s)
+		return NULL;
 	leng = ft_strlen(s);
 	i = 0;
 	d = malloc((leng + 1));
 	if (!d)
 		return (NULL);
-		
-	
 	while (i < leng)
 	{
 		d[i] = s[i];
 		i++;
-	}d[leng] = '\0';
+	}
+	d[leng] = '\0';
 	return (d);
 }
 
 
-size_t	ft_strlen(const char *r)
+int	ft_strlen(char *r)
 {
 	int	i;
 
@@ -44,7 +45,7 @@ size_t	ft_strlen(const char *r)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int	i[2];
 	char	*d;
@@ -68,7 +69,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (d);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	len_s;
@@ -94,10 +95,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (d);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(char *str, int c)
 {
 	size_t	i;
-
+	if (!str)
+		return NULL;
 	i = 0;
 	while (str[i])
 	{
