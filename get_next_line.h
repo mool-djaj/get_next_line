@@ -2,7 +2,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
+#  define BUFFER_SIZE 12
 # endif
 
 # include <unistd.h>
@@ -12,7 +12,7 @@
 
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s);
-int	ft_strlen(const char *r);
+size_t	ft_strlen(const char *r);
 char    *extract_line(char *stash);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *str, int c);

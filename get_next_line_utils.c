@@ -34,7 +34,7 @@ char	*ft_strdup(const char *s)
 }
 
 
-int	ft_strlen(const char *r)
+size_t	ft_strlen(const char *r)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int	ft_strlen(const char *r)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i[2];
+	int	i[2];
 	char	*d;
 
 	if (!s1 && !s2)
@@ -94,18 +94,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (d);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src)
+char	*ft_strchr(const char *str, int c)
 {
 	size_t	i;
-	size_t	len;
 
-	len = ft_strlen(src);
 	i = 0;
-	while (src[i])
+	while (str[i])
 	{
-		dst[i] = src[i];
+		if (str[i] == (char) c)
+			return ((char *)(str + i));
 		i++;
 	}
-	dst[i] = '\0';
-	return (len);
+	if ((char) c == '\0')
+		return ((char *)(str + i));
+	return (NULL);
 }
