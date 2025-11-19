@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/13 22:15:20 by akaarich          #+#    #+#             */
-/*   Updated: 2025/11/18 23:31:41 by akaarich         ###   ########.fr       */
+/*   Created: 2025/11/19 20:05:05 by akaarich          #+#    #+#             */
+/*   Updated: 2025/11/19 20:23:31 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char *join_and_free(char **s1, char *s2)
 {
@@ -99,23 +99,23 @@ char *sav_rest(char **sta)
 
 char *get_next_line(int fd)
 {
-    static char *sta = NULL;
+    static char *sta[OPEN_MAX];
     char        *line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
+    if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
         return NULL;
 
-    if (!read_store(fd, &sta))
+    if (!read_store(fd, &sta[fd]))
         return NULL;
 
-    line = extract_line(sta);
+    line = extract_line(sta[fd]);
 	if(!line)
 		{	
-			free(sta);
-			sta = NULL;
+			free(sta[fd]);
+			sta[fd] = NULL;
 			return NULL;
 		}
-    sta = sav_rest(&sta);
+    sta[fd] = sav_rest(&sta[fd]);
 		
 
     return line;
