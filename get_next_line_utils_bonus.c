@@ -6,7 +6,7 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:03:40 by akaarich          #+#    #+#             */
-/*   Updated: 2025/11/19 20:04:24 by akaarich         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:45:52 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,47 @@
 
 char	*ft_strdup(char *s)
 {
-	unsigned int		i;
-	unsigned int	leng;
 	char			*d;
+	unsigned int	i;
+	unsigned int	len;
 
 	if (!s)
-		return NULL;
-	leng = ft_strlen(s);
-	i = 0;
-	d = malloc((leng + 1));
+		return (NULL);
+	len = ft_strlen(s);
+	d = malloc(len + 1);
 	if (!d)
 		return (NULL);
-	while (i < leng)
+	i = 0;
+	while (i < len)
 	{
 		d[i] = s[i];
 		i++;
 	}
-	d[leng] = '\0';
+	d[len] = '\0';
 	return (d);
 }
 
-
-int	ft_strlen(char *r)
+int	ft_strlen(char *s)
 {
 	int	i;
 
 	i = 0;
-	while (r[i])
+	while (s[i])
 		i++;
 	return (i);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int	i[2];
+	int		i[2];
 	char	*d;
 
 	if (!s1 && !s2)
-			return (NULL);
-	if (!s1)		
-			return (ft_strdup(s2));
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
 	if (!s2)
-			return (ft_strdup(s1));
+		return (ft_strdup(s1));
 	i[0] = 0;
 	i[1] = 0;
 	d = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
@@ -71,9 +70,9 @@ char	*ft_strjoin(char *s1, char *s2)
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
+	char	*d;
 	size_t	i;
 	size_t	len_s;
-	char	*d;
 
 	if (!s)
 		return (NULL);
@@ -95,19 +94,20 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (d);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr(char *s, int c)
 {
 	size_t	i;
-	if (!str)
-		return NULL;
+
+	if (!s)
+		return (NULL);
 	i = 0;
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] == (char) c)
-			return ((char *)(str + i));
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
 		i++;
 	}
-	if ((char) c == '\0')
-		return ((char *)(str + i));
+	if ((char)c == '\0')
+		return ((char *)(s + i));
 	return (NULL);
 }
