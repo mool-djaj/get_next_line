@@ -6,7 +6,7 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:05:50 by akaarich          #+#    #+#             */
-/*   Updated: 2025/11/20 21:12:55 by akaarich         ###   ########.fr       */
+/*   Updated: 2025/11/21 01:07:24 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 # include <unistd.h>
