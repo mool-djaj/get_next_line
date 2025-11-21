@@ -6,7 +6,7 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:05:05 by akaarich          #+#    #+#             */
-/*   Updated: 2025/11/20 22:16:33 by akaarich         ###   ########.fr       */
+/*   Updated: 2025/11/21 02:10:48 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*read_store(int fd, char **sta)
 	if (!*sta)
 		*sta = ft_strdup("");
 	if (!*sta)
-		return (free(*sta), *sta = NULL, (NULL));
+		return (free(*sta), (NULL));
 	byt_read = 1;
 	while (!ft_strchr(*sta, '\n') && byt_read > 0)
 	{
